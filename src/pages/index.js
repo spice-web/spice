@@ -1,128 +1,103 @@
 import * as React from "react"
-import { Link } from "gatsby"
+import { Link, graphql } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
-import * as styles from "../components/index.module.css"
+// import * as styles from "../components/index.module.css"
 
-const links = [
-  {
-    text: "Tutorial",
-    url: "https://www.gatsbyjs.com/docs/tutorial",
-    description:
-      "A great place to get started if you're new to web development. Designed to guide you through setting up your first Gatsby site.",
-  },
-  {
-    text: "Examples",
-    url: "https://github.com/gatsbyjs/gatsby/tree/master/examples",
-    description:
-      "A collection of websites ranging from very basic to complex/complete that illustrate how to accomplish specific tasks within your Gatsby sites.",
-  },
-  {
-    text: "Plugin Library",
-    url: "https://www.gatsbyjs.com/plugins",
-    description:
-      "Learn how to add functionality and customize your Gatsby site or app with thousands of plugins built by our amazing developer community.",
-  },
-  {
-    text: "Build and Host",
-    url: "https://www.gatsbyjs.com/cloud",
-    description:
-      "Now you’re ready to show the world! Give your Gatsby site superpowers: Build and host on Gatsby Cloud. Get started for free!",
-  },
-]
-
-const samplePageLinks = [
-  {
-    text: "Page 2",
-    url: "page-2",
-    badge: false,
-    description:
-      "A simple example of linking to another page within a Gatsby site",
-  },
-  { text: "TypeScript", url: "using-typescript" },
-  { text: "Server Side Rendering", url: "using-ssr" },
-  { text: "Deferred Static Generation", url: "using-dsg" },
-]
-
-const moreLinks = [
-  { text: "Join us on Discord", url: "https://gatsby.dev/discord" },
-  {
-    text: "Documentation",
-    url: "https://gatsbyjs.com/docs/",
-  },
-  {
-    text: "Starters",
-    url: "https://gatsbyjs.com/starters/",
-  },
-  {
-    text: "Showcase",
-    url: "https://gatsbyjs.com/showcase/",
-  },
-  {
-    text: "Contributing",
-    url: "https://www.gatsbyjs.com/contributing/",
-  },
-  { text: "Issues", url: "https://github.com/gatsbyjs/gatsby/issues" },
-]
-
-const utmParameters = `?utm_source=starter&utm_medium=start-page&utm_campaign=default-starter`
-
-const IndexPage = () => (
+const IndexPage = ({data}) => (
   <Layout>
-    <div className={styles.textCenter}>
+    <Seo title="Home" />
+    {/* コンテナ　*/ }
+    <div className="container w-full grid grid-cols-12 mx-auto gap-2">
+    {/* トップ画像ブロック */}
+    <div className="col-span-12 bg-green-100 text-center p-0 border-solid border-4 border-red-400">
       <StaticImage
-        src="../images/example.png"
-        loading="eager"
-        width={64}
-        quality={95}
-        formats={["auto", "webp", "avif"]}
+        src="../images/960x360.png"
         alt=""
-        style={{ marginBottom: `var(--space-3)` }}
       />
-      <h1>
-        Welcome to <b>Gatsby!</b>
-      </h1>
-      <p className={styles.intro}>
-        <b>Example pages:</b>{" "}
-        {samplePageLinks.map((link, i) => (
-          <React.Fragment key={link.url}>
-            <Link to={link.url}>{link.text}</Link>
-            {i !== samplePageLinks.length - 1 && <> · </>}
-          </React.Fragment>
-        ))}
-        <br />
-        Edit <code>src/pages/index.js</code> to update this page.
-      </p>
     </div>
-    <ul className={styles.list}>
-      {links.map(link => (
-        <li key={link.url} className={styles.listItem}>
-          <a
-            className={styles.listItemLink}
-            href={`${link.url}${utmParameters}`}
-          >
-            {link.text} ↗
-          </a>
-          <p className={styles.listItemDescription}>{link.description}</p>
-        </li>
-      ))}
-    </ul>
-    {moreLinks.map((link, i) => (
-      <React.Fragment key={link.url}>
-        <a href={`${link.url}${utmParameters}`}>{link.text}</a>
-        {i !== moreLinks.length - 1 && <> · </>}
-      </React.Fragment>
-    ))}
+      
+      {/* information block */}
+
+      <div className="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-6 row-span-6 border-solid border-4 border-red-400">
+        <div className="col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-6 bg-indigo-400 front-medium text-white p-1 h-10">
+          インフォメーション
+        </div>
+        {data.allMarkdownRemark.edges.map(({ node }) => (
+          <div className="col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-6 p-1 h-10">
+            <Link to={node.fields.slug}>{node.frontmatter.date}{` `}{ node.frontmatter.title}</Link>
+          </div>
+        ))}
+      </div>
+
+      {/* IR情報 block */}
+      <div className="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-6 row-span-6 border-solid border-4 border-red-400">
+        <div className="col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-6 bg-indigo-400 front-medium text-white p-1 h-10">IR情報</div>
+        <div className="col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-6 p-1 h-10">IR情報</div>
+        <div className="col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-6 p-1 h-10">IR情報</div>
+        <div className="col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-6 p-1 h-10">ブログ</div>
+        <div className="col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-6 p-1 h-10">広告スペース</div>
+        <div className="col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-6 p-1 h-10">広告スペース</div>
+      </div>
+
+      {/* カードブロック */}
+      <div className="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-4 rounded overflow-hidden shadow-lg border-solid border-4 border-red-400">
+        <StaticImage className="w-full" src="../images/286x180.png" alt="" />
+        <div className="px-4 py-2">
+          <div className="font-medium text-xl text-indigo-700 mb-2">事業内容①</div>
+          <p className="text-gray-700 text-base">
+            記事は出店裁判が承諾するprojectデータ以外、引用する方針が対話物フリーのさんしょうたいとるにありれてはありなおい。
+          </p>
+        </div>
+      </div>
+
+      {/* カードブロック */}
+      <div className="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-4 rounded overflow-hidden shadow-lg border-solid border-4 border-red-400">
+        <StaticImage className="w-full" src="../images/286x180.png" alt="" />
+        <div className="px-4 py-2">
+          <div className="font-medium text-xl text-indigo-700 mb-2">事業内容①</div>
+          <p className="text-gray-700 text-base">
+            記事は出店裁判が承諾するprojectデータ以外、引用する方針が対話物フリーのさんしょうたいとるにありれてはありなおい。
+          </p>
+        </div>
+      </div>
+
+      {/* カードブロック */}
+      <div className="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-4 rounded overflow-hidden shadow-lg border-solid border-4 border-red-400">
+        <StaticImage className="w-full" src="../images/286x180.png" alt="" />
+        <div className="px-4 py-2">
+          <div className="font-medium text-xl text-indigo-700 mb-2">事業内容①</div>
+          <p className="text-gray-700 text-base">
+            記事は出店裁判が承諾するprojectデータ以外、引用する方針が対話物フリーのさんしょうたいとるにありれてはありなおい。
+          </p>
+        </div>
+      </div>
+
+    </div>
+    
+
+
+
   </Layout>
 )
-
-/**
- * Head export to define metadata for the page
- *
- * See: https://www.gatsbyjs.com/docs/reference/built-in-components/gatsby-head/
- */
-export const Head = () => <Seo title="Home" />
-
+  
 export default IndexPage
+
+export const query = graphql`
+query {
+  allMarkdownRemark ( limit:4, sort:{fields: [frontmatter___date], order:DESC} ) {
+    edges {
+      node {
+        frontmatter {
+          title
+          date(formatString: "YYYY月 MM月 DD日")
+        }
+        fields {
+          slug
+        }
+      }
+    }
+  }
+}`
