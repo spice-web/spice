@@ -15,7 +15,7 @@ module.exports = {
     siteUrl: `https://spice-web.jp/`,
   },
   plugins: [
-    `gatsby-plugin-postcss`,
+    // `gatsby-plugin-postcss`, // tailwind
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -57,5 +57,15 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
+    `gatsby-plugin-sass`,
+    // 未使用 SVG プラグイン
+    // {
+    //   resolve: `gatsby-plugin-react-svg`,
+    //   options: {
+    //     rule: {
+    //       include: `/images/svg/`
+    //     }
+    //   }
+    // }
   ],
 }

@@ -1,0 +1,13 @@
+@use './variable' as *;
+
+.l-inner {
+  max-width: calc(950px + 2rem);
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.l-footer {
+  background: #111;
+  color: #fff;
+}

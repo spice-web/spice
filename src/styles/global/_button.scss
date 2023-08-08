@@ -1,0 +1,54 @@
+@use './_variable' as *;
+
+.button {
+  display: block;
+  color: #fff;
+  font-size: .75rem;
+  text-align: center;
+  background: #ea7329;
+  width: 80%;
+  max-width: 200px;
+  border-radius: 2rem;
+  margin: 0 auto;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+
+  &::after {
+    background: #ff701e;
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '';
+    width: 100%;
+    transform: scale(0, 1);
+    transform-origin: left top;
+    transition: .2s cubic-bezier(0.45, 0, 0.55, 1);
+    z-index: -1;
+
+    transform: skewY(-10deg) scale(1, 0);
+    height: 140px; // ボタンの高さによって調整
+  }
+
+  &:hover {
+    color: #fff;
+
+    &::after {
+      transform: skewY(-10deg) scale(1, 1);
+    }
+  }
+
+  &--black {
+    background: #111;
+
+    &::after {
+      background: #FFF;
+    }
+
+    &:hover {
+      color: #333;
+    }
+  }
+}

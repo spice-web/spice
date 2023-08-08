@@ -1,0 +1,83 @@
+.header {
+  height: 50px;
+  padding: 10px;
+}
+
+.logo {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 1rem;
+  align-items: center;
+  justify-content: left;
+}
+
+.copy {
+  font-size: 0.625rem;
+  font-weight: bold;
+}
+
+.navWrap {
+  display: none;
+}
+
+@media screen and (min-width: 769px) {
+  .header {
+    height: 80px;
+  }
+
+  .inner {
+    display: grid;
+    grid-template-columns: auto 1fr;
+  }
+
+  .logo {
+    flex-direction: column;
+    gap: 0.15rem;
+    align-items: flex-start;
+  }
+
+  .navWrap {
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .navItem {
+    display: grid;
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: bold;
+
+    span {
+      width: 100%;
+      display: block;
+      font-size: 0.75em;
+      font-weight: bold;
+      letter-spacing: 0.1em;
+    }
+
+    &.service span {
+      color: #fa781e;
+    }
+
+    &.products span {
+      color: #c80a1e;
+    }
+
+    &.information span {
+      border-top-color: #fa781e;
+      color: #289696;
+    }
+
+    &.company span {
+      border-top-color: #fa781e;
+      color: #007cc3;
+    }
+
+    &.contact span {
+      border-top-color: #fa781e;
+      color: #8c50d2;
+    }
+  }
+}

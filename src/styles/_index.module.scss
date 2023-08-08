@@ -1,0 +1,90 @@
+@use './global/variable' as *;
+
+.hero {
+  width: 100%;
+}
+
+.headline {
+  text-align: center;
+  font-weight: bold;
+  font-size: clamp(1.25rem, 5vw, 32px);
+}
+
+.parallax {
+  background-color: #fa781e;
+  color: #fff;
+  padding: 2rem 1rem;
+
+  .box {
+    max-width: calc(950px + 2rem);
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include mq() {
+      display: grid;
+      grid-template-columns: 30% 1fr;
+      align-items: center;
+    }
+  }
+
+  // display: grid;
+  // grid-template-columns: auto 1fr;
+  h2 {
+    font-size: 2.667rem;
+    letter-spacing: 0.1em;
+    margin: 0;
+  }
+
+  .rightBox {
+    @include mq() {
+      text-align: left;
+      border-left: 1px solid #FFF;
+      padding-left: 10%;
+    }
+  }
+}
+
+.subTitle {
+  color: var(--color-text);
+  background: #fff;
+  position: relative;
+  display: inline-block;
+  padding: 5px 15px;
+  margin-bottom: 1rem;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 1.2rem;
+    height: 1.667rem;
+  }
+
+  &::before {
+    top: -3px;
+    left: -3px;
+    border-top: 3px solid var(--color-text);
+    border-left: 3px solid var(--color-text);
+  }
+
+  &::after {
+    bottom: -3px;
+    right: -3px;
+    border-bottom: 3px solid var(--color-text);
+    border-right: 3px solid var(--color-text);
+  }
+}
+
+.serviceList {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(5, auto);
+  grid-auto-flow: column;
+}
+
+.serviceListItem::before {
+  content: "●";
+  color: #f1853c;
+  padding-right: 0.25rem;
+}
