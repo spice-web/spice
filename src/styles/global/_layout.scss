@@ -1,0 +1,8 @@
+@use 'variable' as *;
+
+.inner {
+  width: 100%;
+  max-width: calc(960px + 2rem);
+  margin-left: auto;
+  margin-right: auto;
+}

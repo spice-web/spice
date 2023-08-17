@@ -6,12 +6,15 @@ import DrawerMenu from './drawerMenu'
 
 const Header = ({ siteTitle }) => (
   <header className="l-header">
+    <div className="l-header__inner">
     <div className="l-header__logo">
-      <StaticImage
-        alt="株式会社スパイス ロゴ"
-        className={ `logo` }
-        src="../images/logo.svg"
-      />
+      <Link to="/">
+        <StaticImage
+          alt="株式会社スパイス ロゴ"
+          className={ `logo` }
+          src="../images/logo.svg"
+          />
+      </Link>
       <div className="l-header__txt">企業の味に旨みをプラス 株式会社スパイス</div>
     </div>
 
@@ -24,7 +27,7 @@ const Header = ({ siteTitle }) => (
     </nav>
 
     <DrawerMenu />
-
+    </div>
   </header>
 )
 

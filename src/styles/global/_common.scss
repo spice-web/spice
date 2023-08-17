@@ -1,7 +1,68 @@
+@use "_variable" as *;
+
 a {
   text-decoration: none;
 }
 
 .link {
   text-decoration: underline;
+}
+
+.spamCheck::after {
+  content: '@';
+}
+
+// ||br
+// 650pxまで
+.br_max-sm {
+  display: block;
+
+  @include mq(sm) {
+    display: none;
+  }
+}
+
+// 650px以上
+.br_sm {
+  display: block;
+
+  @include mq(max-sm) {
+    display: none;
+  }
+}
+
+// 850pxまで
+.br_max-md {
+  display: block;
+
+  @include mq() {
+    display: none;
+  }
+}
+
+// 850px以上
+.br_md {
+  display: none;
+
+  @include mq() {
+    display: block;
+  }
+}
+
+// 980pxまで
+.br_max-lg {
+  display: block;
+
+  @include mq(lg) {
+    display: none;
+  }
+}
+
+// 981px以上
+.br_lg {
+  display: none;
+
+  @include mq(lg) {
+    display: block;
+  }
 }
