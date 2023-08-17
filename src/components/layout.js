@@ -9,7 +9,17 @@ import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
-import "./layout.css"
+import Footer from "./footer"
+
+import "../styles/global/global.scss"
+
+// font指定
+import "@fontsource/noto-sans-jp/100.css"
+import "@fontsource/noto-sans-jp/300.css"
+import "@fontsource/noto-sans-jp/400.css"
+import "@fontsource/noto-sans-jp/500.css"
+import "@fontsource/noto-sans-jp/700.css"
+
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -33,16 +43,7 @@ const Layout = ({ children }) => {
         }}
       >
         <main>{children}</main>
-        <footer
-          style={{
-            marginTop: `var(--space-5)`,
-            fontSize: `var(--font-sm)`,
-          }}
-        >
-          © {new Date().getFullYear()} &middot; Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
-        </footer>
+          <Footer />
       </div>
     </>
   )

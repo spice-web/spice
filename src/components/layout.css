@@ -37,8 +37,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   color: var(--color-text);
-  font-family: sans-serif;
-  font-family: var(--font-sans);
+  /* font-family: sans-serif;
+  font-family: var(--font-sans); */
+  font-family: "Noto Sans JP", sans-serif;
   font-weight: normal;
   margin: 0;
   word-wrap: break-word;

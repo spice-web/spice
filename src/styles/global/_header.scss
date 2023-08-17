@@ -1,0 +1,66 @@
+@use "variable" as *;
+
+.l-header {
+  display: flex;
+  position: relative;
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    column-gap: 0.5em;
+  }
+
+  &__txt {
+    font-size: 0.75rem;
+  }
+}
+
+.logo {
+  width: 100px;
+}
+
+.nav {
+  display: none;
+
+  @include mq() {
+    display: flex;
+  }
+
+  &__list {
+    &:after {
+      display: block;
+      text-align: center;
+      font-size: 0.75em;
+    }
+
+    &.service {
+      &:after {
+        content: "Service";
+      }
+    }
+
+    &.product {
+      &:after {
+        content: "Product";
+      }
+    }
+
+    &.information {
+      &:after {
+        content: "Information";
+      }
+    }
+
+    &.company {
+      &:after {
+        content: "company";
+      }
+    }
+
+    &.contact {
+      &:after {
+        content: "contact";
+      }
+    }
+  }
+}
