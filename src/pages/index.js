@@ -1,4 +1,4 @@
-import * as React from "react"
+import React, { useEffect, useState, useRef } from "react"
 import { Link, graphql } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 
@@ -19,30 +19,67 @@ const serviceList = [
     { id: 'code', label: '洗浄剤CODE販売店', link: 'service.php#code' },
 ];
 
-const IndexPage = ({data}) => (
-  <Layout>
-    <StaticImage
-      src="../images/top/top_main.jpg"
-    />
+const IndexPage = ({ data }) => {
 
-    <p className={styles.headline}>企業のプロジェクトに独自の刺激を</p>
-      <p className="center">株式会社スパイスは、<br className="br_max-sm" />あらゆるプロジェクトに独自の視点で付加価値を加え、<br />客観的に俯瞰して目的を見据え、新たな視点をご提案します。</p>
+  // スクロールでアニメーション処理
+  const elementRef = useRef(null);
+  const [shouldAnimate, setShouldAnimate] = useState(false);
 
-            {/* サービス */}
+  const handleScroll = () => {
+    const element = elementRef.current;
+    if (element) {
+      const elementTop = element.getBoundingClientRect().top;
+      const windowHeight = window.innerHeight;
+
+      if (elementTop < windowHeight) {
+        setShouldAnimate(true);
+      } else {
+        setShouldAnimate(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  return (
+    <Layout>
+      <div className={`${styles.hero}`}>
+        <StaticImage
+          src="../images/top/top_main.jpg"
+        />
+      </div>
+
+      <h2 ref={elementRef} className={`${styles.read} ${shouldAnimate ? styles.bounce : ""}`}>For Business.<br />
+Give Spice.</h2>
+
+      <h3 className={`${styles.headline}`}>企業のプロジェクトに独自の刺激を</h3>
+      <p className="center">株式会社スパイスは、<br className="br_max-sm" />あらゆるプロジェクトに<br className="br_max-sm" />独自の視点で付加価値を加え、<br />客観的に俯瞰して目的を見据え、<br className="br_max-sm" />新たな視点をご提案します。</p>
+
+      {/* サービス */}
       <div className={styles.parallax}>
         <div className={styles.box}>
-          <div>
-            <div className={styles.subTitle}>事業・サービス</div>
-            <h2>Service</h2>
-          </div>
+          <div className={styles.parallaxsubTitle}>事業・サービス</div>
+          <h2 className={styles.parallaxTitle}>
+            SERVICE
+          </h2>
 
           <div className={styles.rightBox}>
-            <p class="title">自分たちが成長するために<br />
+            <p className={styles.contentsTitle}>自分たちが成長するために<br />
               新たな分野にも挑戦し続ける</p>
-            <p class="txt">Eコマース事業、商品開発、ポイントカード事業、<br />
+            <p className={styles.contentsText}>Eコマース事業、商品開発、ポイントカード事業、<br />
               QRコード決済事業、広告代理・制作など、<br />
               独自のネットワークとフットワークで展開しています。</p>
-            <a className="button button--black" href="/service">取扱商品一覧</a>
+            <a className="button button--black" href="/service">サービス一覧
+              <StaticImage
+                src="../images/icon/arrow_w.png"
+                className={`buttonArrow`}
+              />
+            </a>
           </div>
         </div>
       </div>
@@ -52,42 +89,76 @@ const IndexPage = ({data}) => (
           <li key={item.id} className={styles.serviceListItem}>
             {item.link ? (
               <a href={item.link} aria-label={item.label}>{item.label}</a>) : (item.label)
-            }            
+            }
           </li>
         ))}
-        </ul>
+      </ul>
         
-        {/* Product */}
-        <div className={styles.parallax}>
-          <div className={styles.box}>
-                      <div>
-            <div className={styles.subTitle}>商品開発&販売</div>
-            <h2>Products</h2>
+      {/* Product */}
+      <div className={styles.parallax}>
+        <div className={styles.box}>
+          <div>
+            <div className={styles.parallaxsubTitle}>商品開発&販売</div>
+            <h2 className={styles.parallaxTitle}>PRODUCTS</h2>
           </div>
           <div className={styles.rightBox}>
-            <p className="title">商品開発支援から販売サポートまで
+            <p className={styles.contentsTitle}>商品開発支援から販売サポートまで
               トータルでサポート</p>
-            <p>企業の商品の価値を高め、ターゲットに合った販売戦略を行います。<br />
+            <p className={styles.contentsText}>企業の商品の価値を高め、ターゲットに合った販売戦略を行います。<br />
               ときには商品開発に携わり、適切な販売経路を模索し、ブランディングやパッケージの変更などあらゆる面からサポートします。</p>
-            <a className="button button--black" href="/products">取扱商品一覧</a>
+            <a className="button button--black" href="/service">取扱商品一覧
+              <StaticImage
+                src="../images/icon/arrow_w.png"
+                className={`buttonArrow`}
+              />
+            </a>
           </div>
-          </div>
-
-    </div>
-
-    {/* information block */}
-      <div>
-        <div className="">
-          インフォメーション
         </div>
-        {data.allMarkdownRemark.edges.map(({ node }) => (
-          <div className="">
-            <Link to={node.fields.slug}>{node.frontmatter.date}{` `}{node.frontmatter.title}</Link>
-          </div>
-        ))}
+
       </div>
-  </Layout>
-)
+
+      {/* information block */}
+      <div>
+        <h2 className={`${styles.informationTitle}`}>
+          INFORMATION
+        </h2>
+        <div className="c-postList l-inner">
+          {data.allMicrocmsInformation.edges.map(({ node }) => (
+            <div className='c-postList__item'>
+              <Link
+                to={`/information/${node.informationId}`}
+                className={`c-postList__link`}
+              >
+                {node.thumbnail ? (
+                  <img
+                    src={node.thumbnail.url}
+                    alt="Thumbnail"
+                    className={`c-postList__thumb`}
+                  />
+                ) : (
+                  <StaticImage
+                    src="../images/noimage.jpg" // デフォルトのイメージパス
+                    alt="Default Thumbnail"
+                    className={`c-postList__thumb`}
+                  />
+                )}
+                <div className="c-postList__item-contents">
+                  <div className="c-postList__item-date">{node.date}</div>
+                  <h3>{node.title}</h3>
+                  <p>{node.excerpt}</p>
+                  
+                  <div className="c-postList__item-cate">
+                    {node.category.category}
+                  </div>
+                </div>
+              </Link>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Layout>
+  )
+}
 
 /**
  * Head export to define metadata for the page
@@ -100,18 +171,23 @@ export default IndexPage
 
 
 export const query = graphql`
-query {
-  allMarkdownRemark ( limit:4, sort:{fields: [frontmatter___date], order:DESC} ) {
-    edges {
-      node {
-        frontmatter {
+  query {
+    allMicrocmsInformation ( limit:4, sort:{fields: date, order:DESC} ) {
+      edges {
+        node {
+          informationId
           title
-          date(formatString: "YYYY月 MM月 DD日")
-        }
-        fields {
-          slug
+          date(formatString: "YYYY年 MM月 DD日")
+          category {
+            category
+          }
+          excerpt
+          thumbnail {
+            url
+            height
+            width
+          }
         }
       }
     }
-  }
-}`
+  }`

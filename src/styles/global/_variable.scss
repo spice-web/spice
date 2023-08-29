@@ -36,16 +36,9 @@ $breakpoints: (
   variable
 ============================== */
 // color
-// $yellow: #FFFAC8;
-$pale-green: #EFFCC9;
-$light-green: #B4F000;
-$green: #64C800;
-$dark-green: #32B400;
-$deep-green: #006E00;
-$yellow: #FFFF00;
-$pink: #FF2C73;
-$text-color: #404040;
-
+$orange: #ea7329;
+$black: var(--color-text
+);
 
 /* ==============================
   中央寄せ
@@ -56,19 +49,18 @@ $text-color: #404040;
   @if $direction==xy {
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%
-    );
-}
+    transform: translate(-50%, -50%);
+  }
 
-@else if $direction==x {
-  left: 50%;
-  transform: translateX(-50%);
-}
+  @else if $direction==x {
+    left: 50%;
+    transform: translateX(-50%);
+  }
 
-@else if $direction==y {
-  top: 50%;
-  transform: translateY(-50%);
-}
+  @else if $direction==y {
+    top: 50%;
+    transform: translateY(-50%);
+  }
 }
 
 @mixin l_spacing($spacing) {

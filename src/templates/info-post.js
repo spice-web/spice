@@ -7,17 +7,17 @@ import Seo from "../components/seo"
 
 const InformationPost = ({ data }) => (
   <Layout>
-    <Seo title={data.markdownRemark.frontmatter.title} />
+    <Seo title={data.microcmsInformation.title} />
 
     {/* コンテナ */}
-    <div className="container w-full grid grid-cols-12 mx-auto gap-2">
+    <div className="container">
 
       {/* 表題ブロック */}
-      <div className="col-span-12 col-span-10 p-3">
-        <div className="w-full font-medium text-base mb-3">
-          {data.markdownRemark.frontmatter.date}
+      <div className="">
+        <div className="">
+          {data.microcmsInformation.tile}
         </div>
-        <div className="col-span-12 p-3" dangerouslySetInnerHTML={{ __html:data.markdownRemark.html}}></div>
+        <div className="" dangerouslySetInnerHTML={{ __html:data.microcmsInformation.body}}></div>
       </div>
     </div>
   </Layout>
@@ -26,12 +26,14 @@ const InformationPost = ({ data }) => (
 export default InformationPost
 
 export const query = graphql`
-query($slug:String!) {
-  markdownRemark(fields: {slug: {eq:$slug}}) {
-    html
-    frontmatter {
-      date(formatString: "YYYY年 MM日 DD日")
-      title
+query($id:String!) {
+  microcmsInformation(informationId: {eq:$id}) {
+    informationId
+    title
+    date(formatString: "YYYY年 MM月 DD日")
+    body
+    category {
+      category
     }
   }
 }`

@@ -1,0 +1,115 @@
+@use 'global/variable' as *;
+
+.hero {
+  width: 100%;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.read {
+  text-align: center;
+  font-size: clamp(3rem, 10vw, 76px);
+
+  @include mq() {}
+}
+
+.headline {
+  text-align: center;
+  font-size: 1.334rem;
+  margin-bottom: 0.25rem;
+  font-weight: bold;
+
+  @include mq() {}
+}
+
+.parallax {
+  background: $orange;
+  padding: 2rem 1rem;
+
+  &Title {
+    text-align: center;
+    color: #fff;
+    font-size: 3rem;
+    letter-spacing: 0.1em;
+  }
+
+  &subTitle {
+    background: #fff;
+    color: var(--color-text);
+    position: relative;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 5px 15px;
+    text-align: center;
+
+    &::after,
+    &::before {
+      content: "";
+      position: absolute;
+      width: 1.2rem;
+      height: 1.667rem;
+    }
+
+    &::before {
+      top: -3px;
+      left: -3px;
+      border-top: 3px solid var(--color-text);
+      border-left: 3px solid var(--color-text);
+    }
+
+    &::after {
+      bottom: -3px;
+      right: -3px;
+      border-bottom: 3px solid var(--color-text);
+      border-right: 3px solid var(--color-text);
+    }
+  }
+}
+
+.contentsTitle {
+  text-align: center;
+  color: #fff;
+}
+
+.contentsText {
+  text-align: center;
+  color: #fff;
+  font-size: 0.875rem;
+}
+
+.information {
+  &Box {}
+
+  &Title {
+    display: inline-block;
+    margin: 0 auto;
+    line-height: 1;
+    font-size: 2rem;
+    padding: 0.35rem;
+    text-align: center;
+  }
+}
+
+// 
+// アニメーションフレーム
+//
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.bounce {
+  animation: bounce 0.5s 3;
+}

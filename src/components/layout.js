@@ -20,6 +20,7 @@ import "@fontsource/noto-sans-jp/400.css"
 import "@fontsource/noto-sans-jp/500.css"
 import "@fontsource/noto-sans-jp/700.css"
 
+import "./layout.css"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -35,13 +36,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: `var(--size-content)`,
-          padding: `var(--size-gutter)`,
-        }}
-      >
+      <div>
         <main>{children}</main>
           <Footer />
       </div>

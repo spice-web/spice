@@ -1,0 +1,116 @@
+@use 'variable' as *;
+
+// 
+// title
+// 
+.c-title__wrap {
+  position: relative;
+
+  &::before,
+  &::after {
+    position: absolute;
+  }
+
+  &::before {}
+
+  &::after {}
+}
+
+.c-title {
+  position: relative;
+
+  &::before,
+  &::after {
+    position: absolute;
+  }
+
+  &::before {}
+
+  &::after {}
+}
+
+// 
+// button
+// 
+.button {
+  border-radius: 2rem;
+  color: #fff;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  width: 80%;
+  max-width: 350px;
+  margin: 0 auto;
+  padding: 0.75rem 2rem;
+  letter-spacing: 0.1em;
+  justify-content: center;
+  gap: 2vw;
+
+  &:hover {
+    opacity: 0.7;
+
+    .buttonArrow {
+      transform: translateX(1vw);
+    }
+  }
+
+  .buttonArrow {
+    transition: .2s;
+    vertical-align: middle;
+    width: 16px;
+  }
+
+  &--black {
+    background: $black;
+  }
+}
+
+//
+// POST
+//
+.c-postList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 2rem;
+
+  &__link {
+    &:hover {
+      .c-postList__thumb {
+        transform: scale(1.05);
+        transition: 0.6s ease all;
+      }
+    }
+  }
+
+  &__item {
+    width: 48%;
+    border-radius: 0.75rem;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    @include mq() {
+      width: 30%;
+    }
+  }
+
+  &__item-date {
+    font-size: 0.75rem;
+  }
+
+  &__item-contents {
+    padding: 1rem;
+  }
+
+  &__item-cate {
+    border: 1px solid #CCC;
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    font-size: 0.625rem;
+  }
+}
+
+.c-postList__thumb {
+  width: 100%;
+  height: auto;
+}
